@@ -150,6 +150,7 @@ spdlog_enable_warnings(spdlog)
 
 set_target_properties(spdlog PROPERTIES VERSION ${SPDLOG_VERSION} SOVERSION ${SPDLOG_VERSION_MAJOR})
 set_target_properties(spdlog PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(spdlog PROPERTIES FOLDER "Dependencies/Debugging")
 
 if(COMMAND target_precompile_headers AND SPDLOG_ENABLE_PCH)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/pch.h.in ${PROJECT_BINARY_DIR}/spdlog_pch.h @ONLY)
@@ -166,6 +167,8 @@ target_include_directories(spdlog_header_only INTERFACE "$<BUILD_INTERFACE:${CMA
                                                         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 target_link_libraries(spdlog_header_only INTERFACE Threads::Threads)
 
+set_target_properties(spdlog_header_only PROPERTIES FOLDER "Dependencies")
+    
 # ---------------------------------------------------------------------------------------
 # Use fmt package if using external fmt
 # ---------------------------------------------------------------------------------------
